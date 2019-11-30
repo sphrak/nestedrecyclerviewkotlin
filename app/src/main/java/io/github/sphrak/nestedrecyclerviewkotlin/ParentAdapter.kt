@@ -5,8 +5,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.child_item.view.*
 import kotlinx.android.synthetic.main.child_viewholder.view.*
+import java.util.*
 
 class ParentAdapter constructor(
     private val viewPool: RecyclerView.RecycledViewPool
@@ -31,7 +31,7 @@ class ParentAdapter constructor(
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(title: String) {
-            itemView.title.text = title
+            itemView.title.text = title.toUpperCase(Locale.getDefault())
         }
     }
 
@@ -42,7 +42,7 @@ class ParentAdapter constructor(
             .childRecyclerView
             ?.apply {
                 layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = ChildAdapter()
+                adapter = ChildAdapter(exampleDataModelList[position].numbers)
                 setRecycledViewPool(viewPool)
             }
     }

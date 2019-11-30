@@ -6,11 +6,9 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import kotlinx.android.synthetic.main.child_item.view.*
 
-class ChildAdapter constructor(): RecyclerView.Adapter<ChildAdapter.ViewHolder>() {
-
-    private val numberList: MutableList<String> by lazy {
-        mutableListOf<String>()
-    }
+class ChildAdapter constructor(
+    private val listOfInts: List<Int>
+): RecyclerView.Adapter<ChildAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(number: String) {
@@ -29,16 +27,9 @@ class ChildAdapter constructor(): RecyclerView.Adapter<ChildAdapter.ViewHolder>(
                 )
         )
 
-    override fun getItemCount(): Int =
-        numberList.size
+    override fun getItemCount(): Int = listOfInts.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int): Unit =
-        holder.bind(numberList[position])
-
-    fun updateList(list: List<String>) {
-        numberList.clear()
-        numberList.addAll(list)
-        notifyDataSetChanged()
-    }
+        holder.bind(listOfInts[position].toString())
 
 }
