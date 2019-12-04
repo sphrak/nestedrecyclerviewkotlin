@@ -2,69 +2,34 @@ package io.github.sphrak.nestedrecyclerviewkotlin
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import kotlinx.android.synthetic.main.activity_main.*
-import kotlin.random.Random
+import androidx.viewpager2.widget.ViewPager2
 
 class MainActivity : AppCompatActivity() {
 
-    private val alphabetList: List<String> by lazy {
-        listOf(
-            "a",
-            "b",
-            "c",
-            "d",
-            "e",
-            "f",
-            "g",
-            "h",
-            "i",
-            "j",
-            "k",
-            "l",
-            "m",
-            "n",
-            "o",
-            "p",
-            "q",
-            "r",
-            "s",
-            "t",
-            "u",
-            "v",
-            "w",
-            "x",
-            "y",
-            "z"
-        )
-    }
-
-    fun generateExampleDataModel(): List<ExampleDataModel> =
-        alphabetList
-            .map { title: String ->
-                val numbers: List<Int> = (0..1023)
-                    .map {
-                        Random.nextInt()
-                    }
-
-                ExampleDataModel(
-                    title = title,
-                    numbers = numbers
-                )
-            }
+    private lateinit var viewPager: ViewPager2
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val viewPool = RecyclerView.RecycledViewPool()
-        val parentAdapter = ParentAdapter(viewPool = viewPool)
-        parentRecyclerView.apply {
-            adapter = parentAdapter
-            layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
-        }
+        // Instantiate a ViewPager2 and a PagerAdapter.
+        viewPager = findViewById(R.id.viewPager2)
 
-        parentAdapter.setList(list = generateExampleDataModel())
+        // The pager adapter, which provides the pages to the view pager widget.
+        val pagerAdapter = MainViewPagerAdapter(this)
+        viewPager.adapter = pagerAdapter
+        viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
     }
+
+    override fun onBackPressed() {
+        if (viewPager.currentItem == 0) {
+            // If the user is currently looking at the first step, allow the system to handle the
+            // Back button. This calls finish() on this activity and pops the back stack.
+            super.onBackPressed()
+        } else {
+            // Otherwise, select the previous step.
+            viewPager.currentItem = viewPager.currentItem - 1
+        }
+    }
+
 }

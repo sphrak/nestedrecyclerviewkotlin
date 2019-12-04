@@ -4,15 +4,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
+import io.github.sphrak.nestedrecyclerviewkotlin.model.WeatherDataModel
 import kotlinx.android.synthetic.main.child_item.view.*
 
 class ChildAdapter constructor(
-    private val listOfInts: List<Int>
+    private val listOfInts: List<WeatherDataModel>
 ): RecyclerView.Adapter<ChildAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(number: String) {
-            itemView.numberText.text = number
+        fun bind(dataModel: WeatherDataModel) {
+            itemView.temperature.text = dataModel.temp
+            itemView.feelslike.text = dataModel.feelsLikeTemp
+            itemView.wind.text = dataModel.wind
+            itemView.time.text = dataModel.time
         }
     }
 
@@ -30,6 +34,6 @@ class ChildAdapter constructor(
     override fun getItemCount(): Int = listOfInts.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int): Unit =
-        holder.bind(listOfInts[position].toString())
+        holder.bind(listOfInts[position])
 
 }

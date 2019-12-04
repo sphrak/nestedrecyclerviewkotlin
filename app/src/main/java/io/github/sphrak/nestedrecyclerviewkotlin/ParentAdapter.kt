@@ -5,12 +5,18 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import io.github.sphrak.nestedrecyclerviewkotlin.model.ExampleDataModel
 import kotlinx.android.synthetic.main.child_viewholder.view.*
+import org.threeten.bp.OffsetDateTime
+import org.threeten.bp.format.DateTimeFormatter
+import org.threeten.bp.format.FormatStyle
 import java.util.*
 
 class ParentAdapter constructor(
     private val viewPool: RecyclerView.RecycledViewPool
 ): RecyclerView.Adapter<ParentAdapter.ViewHolder>() {
+
+    private val formatter = DateTimeFormatter.ofLocalizedDate(FormatStyle.LONG)
 
     private val exampleDataModelList: MutableList<ExampleDataModel> by lazy {
         mutableListOf<ExampleDataModel>()
@@ -30,19 +36,19 @@ class ParentAdapter constructor(
     override fun getItemCount(): Int = exampleDataModelList.size
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
-        fun bind(title: String) {
-            itemView.title.text = title.toUpperCase(Locale.getDefault())
+        fun bind(title: OffsetDateTime) {
+            itemView.title.text = title.toLocalDateTime().format(formatter)
         }
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bind(exampleDataModelList[position].title)
+        holder.bind(exampleDataModelList[position].time)
         holder
             .itemView
             .childRecyclerView
             ?.apply {
-                layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.HORIZONTAL, false)
-                adapter = ChildAdapter(exampleDataModelList[position].numbers)
+                layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.VERTICAL, false)
+                adapter = ChildAdapter(exampleDataModelList[position].weather)
                 setRecycledViewPool(viewPool)
             }
     }

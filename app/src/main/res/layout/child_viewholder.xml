@@ -11,6 +11,7 @@
         android:layout_height="0dp"
         android:padding="10dp"
         android:text="B"
+        android:textColor="@android:color/white"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -18,7 +19,7 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/childRecyclerView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent"

@@ -1,0 +1,17 @@
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/content"
+    android:background="@drawable/gradient"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/newAppName"
+        style="?android:textAppearanceMedium"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:lineSpacingMultiplier="1.2"
+        android:padding="16dp"
+        android:textSize="48sp"
+        android:textColor="@android:color/white"
+        android:text="EXTRA PAGES BOI" />
+</androidx.constraintlayout.widget.ConstraintLayout>
