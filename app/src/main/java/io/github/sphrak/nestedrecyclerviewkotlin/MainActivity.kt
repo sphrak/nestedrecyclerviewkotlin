@@ -17,8 +17,11 @@ class MainActivity : AppCompatActivity() {
 
         // The pager adapter, which provides the pages to the view pager widget.
         val pagerAdapter = MainViewPagerAdapter(this)
-        viewPager.adapter = pagerAdapter
-        viewPager.orientation = ViewPager2.ORIENTATION_VERTICAL
+        viewPager.apply {
+            adapter = pagerAdapter
+            orientation = ViewPager2.ORIENTATION_VERTICAL
+            offscreenPageLimit = 2
+        }
     }
 
     override fun onBackPressed() {
