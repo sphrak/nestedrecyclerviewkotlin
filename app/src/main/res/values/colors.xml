@@ -2,5 +2,10 @@
 <resources>
     <color name="colorPrimary">#050C20</color>
     <color name="colorPrimaryDark">#050C20</color>
-    <color name="colorAccent">#0A6291</color>
+    <color name="colorAccent">#050C20</color>
+
+    <color name="star_color_1">#ffffff</color>
+    <color name="star_color_2">#25ADFF</color>
+    <color name="star_color_3">#FFC100</color>
+    <color name="star_color_4">#FF3800</color>
 </resources>

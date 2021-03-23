@@ -8,7 +8,7 @@ import io.github.sphrak.nestedrecyclerviewkotlin.model.WeatherDataModel
 import kotlinx.android.synthetic.main.child_item.view.*
 
 class ChildAdapter constructor(
-    private val listOfInts: List<WeatherDataModel>
+    var listOfInts: List<WeatherDataModel>
 ): RecyclerView.Adapter<ChildAdapter.ViewHolder>() {
 
     inner class ViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
@@ -35,5 +35,6 @@ class ChildAdapter constructor(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int): Unit =
         holder.bind(listOfInts[position])
+
 
 }

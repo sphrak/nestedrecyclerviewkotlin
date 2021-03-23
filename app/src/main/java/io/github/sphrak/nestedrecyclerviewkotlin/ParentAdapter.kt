@@ -41,6 +41,8 @@ class ParentAdapter constructor(
         }
     }
 
+    private val childAdapter = ChildAdapter(emptyList())
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.bind(exampleDataModelList[position].time)
         holder
@@ -48,7 +50,7 @@ class ParentAdapter constructor(
             .childRecyclerView
             ?.apply {
                 layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.VERTICAL, false)
-                adapter = ChildAdapter(exampleDataModelList[position].weather)
+                adapter = childAdapter.listOfInts(exampleDataModelList[position].weather)
                 setRecycledViewPool(viewPool)
             }
     }
