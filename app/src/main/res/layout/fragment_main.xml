@@ -18,22 +18,6 @@
         app:starsView_starColors="@array/star_colors_small"
         app:starsView_starCount="20" />
 
-    <com.fdev.backgroundchart.GradientChart
-        android:id="@+id/gradientChart"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        app:isBezier="true"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView"
-        app:minusColorEnd="#90CAF9"
-        app:minusColorStart="#90CAF9"
-        app:plusColorEnd="#1D3988"
-        app:plusColorStart="#050C20"
-        app:zoom="10" />
-
-
     <TextView
         android:id="@+id/appNameView"
         style="?android:textAppearanceMedium"

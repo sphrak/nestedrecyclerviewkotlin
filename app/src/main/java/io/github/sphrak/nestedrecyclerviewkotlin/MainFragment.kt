@@ -5,7 +5,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import kotlinx.android.synthetic.main.fragment_main.*
 
 class MainFragment : Fragment() {
 
@@ -21,19 +20,15 @@ class MainFragment : Fragment() {
 
     override fun onStart() {
         super.onStart()
-        staryNight.onStart()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        gradientChart.chartValues = arrayOf(
-            10f, 30f, 25f, 32f, 13f, 5f, 18f, 36f, 20f, 30f, 28f, 27f, 29f
-        )
+
     }
 
     override fun onStop() {
         super.onStop()
-        staryNight.onStop()
     }
 
 }

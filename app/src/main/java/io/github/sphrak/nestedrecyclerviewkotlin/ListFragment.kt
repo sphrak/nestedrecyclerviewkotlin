@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import io.github.sphrak.nestedrecyclerviewkotlin.model.ExampleDataModel
 import io.github.sphrak.nestedrecyclerviewkotlin.model.WeatherDataModel
-import kotlinx.android.synthetic.main.fragment_list.*
 import org.threeten.bp.OffsetDateTime
 import kotlin.random.Random
 
@@ -53,7 +52,9 @@ class ListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val viewPool = RecyclerView.RecycledViewPool()
         val parentAdapter = ParentAdapter(viewPool = viewPool)
-        parentRecyclerView.apply {
+
+        val rv = view.findViewById<RecyclerView>(R.id.parentRecyclerView)
+        rv.apply {
             adapter = parentAdapter
             layoutManager = LinearLayoutManager(context, LinearLayoutManager.VERTICAL, false)
         }
