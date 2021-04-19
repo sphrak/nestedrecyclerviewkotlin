@@ -41,17 +41,24 @@ class ParentAdapter constructor(
         }
     }
 
-    private val childAdapter = ChildAdapter(emptyList())
+    private var childAdapter: ChildAdapter? = null
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        holder.itemViewType
         holder.bind(exampleDataModelList[position].time)
         holder
             .itemView
             .childRecyclerView
             ?.apply {
-                layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.VERTICAL, false)
-                adapter = childAdapter.listOfInts(exampleDataModelList[position].weather)
-                setRecycledViewPool(viewPool)
+
+                if (this.adapter == null || this.layoutManager == null) {
+                    this.layoutManager = LinearLayoutManager(holder.itemView.context, LinearLayoutManager.VERTICAL, false)
+                    this.adapter = if (childAdapter != null) childAdapter else ChildAdapter(emptyList()).also { childAdapter = it }
+                    setRecycledViewPool(viewPool)
+                }
+
+                childAdapter?.listOfInts = exampleDataModelList[position].weather
+
             }
     }
 
